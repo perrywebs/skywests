@@ -9,7 +9,7 @@
     <meta name="description"
         content="{{ $settings->site_name }} - Dedicated to innovating, simplifying, and humanizing digital banking.">
     <title>@yield('title', $settings->site_name) - {{ $settings->site_name }}</title>
-    <link rel="icon" href="{{ asset('storage/app/public/' . $settings->favicon) }}" type="image/png" />
+    <link rel="icon" href="{{ URL('storage/app/public/' . $settings->favicon) }}" type="image/png" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -358,7 +358,7 @@
         </style>
     @endif
 
-    @laravelPWA
+    {{-- @laravelPWA --}}
 </head>
 
 <body class="font-sans bg-white text-slate-900 antialiased" x-data="{ mobileOpen: false, scrolled: false }"

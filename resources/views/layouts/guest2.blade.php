@@ -225,7 +225,7 @@
         }
     </style>
 
-    @laravelPWA
+    {{-- @laravelPWA --}}
 </head>
 
 <body class="font-sans bg-slate-50 text-slate-900 antialiased">

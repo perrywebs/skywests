@@ -95,6 +95,7 @@
             <div x-data="{ 
                 step: 1,
                 totalSteps: 4,
+                submitting: false,
                 formData: {
                     name: '{{ old('name') }}',
                     middlename: '',
@@ -162,7 +163,7 @@
                 
                 <!-- Form Container -->
                 <div class="px-8 py-6">
-                    <form action="{{ route('register') }}" method="post" id="registration-form">
+                    <form action="{{ route('register') }}" method="post" id="registration-form" @submit="submitting = true">
                         @csrf
                         
                         <!-- Step 1: Personal Information -->
@@ -609,9 +610,11 @@
                             <button 
                                 type="submit" 
                                 x-show="step === totalSteps"
-                                class="inline-flex items-center px-5 py-2.5 border border-transparent rounded-xl font-medium text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 hover:shadow-brand-600/35 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-all duration-200 hover:-translate-y-0.5">
-                                <i data-lucide="check" class="h-4 w-4 mr-1.5"></i>
-                                Create Account
+                                :disabled="submitting"
+                                class="inline-flex items-center px-5 py-2.5 border border-transparent rounded-xl font-medium text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 hover:shadow-brand-600/35 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed">
+                                <svg x-show="submitting" class="animate-spin h-4 w-4 mr-1.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                                <i x-show="!submitting" data-lucide="check" class="h-4 w-4 mr-1.5"></i>
+                                <span x-text="submitting ? 'Creating Account...' : 'Create Account'"></span>
                             </button>
                         </div>
                         

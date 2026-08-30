@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="px-8 pb-8">
-                    <form method="POST" action="{{ route('adminlogin') }}">
+                    <form method="POST" action="{{ route('adminlogin') }}" x-data="{ submitting: false }" @submit="submitting = true">
                         @csrf
 
                         {{-- Email --}}
@@ -130,10 +130,11 @@
                         </div>
 
                         {{-- Submit --}}
-                        <button type="submit"
-                            class="w-full py-3.5 px-4 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg shadow-brand-600/20 hover:shadow-brand-600/35 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2">
-                            <i data-lucide="log-in" class="w-4 h-4"></i>
-                            Sign In
+                        <button type="submit" :disabled="submitting"
+                            class="w-full py-3.5 px-4 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg shadow-brand-600/20 hover:shadow-brand-600/35 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <svg x-show="submitting" class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                            <i x-show="!submitting" data-lucide="log-in" class="w-4 h-4"></i>
+                            <span x-text="submitting ? 'Signing In...' : 'Sign In'"></span>
                         </button>
                     </form>
                 </div>

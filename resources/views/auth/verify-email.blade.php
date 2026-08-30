@@ -2,6 +2,7 @@
 
 @section('title', 'Verify Email')
 
+@section('content')
 <div class="min-h-screen flex items-center justify-center p-6 bg-slate-50/50">
     <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl shadow-slate-900/5 border border-slate-100 overflow-hidden">
 
@@ -69,18 +70,22 @@
                 </div>
 
                 {{-- Resend Verification Email --}}
-                <form method="POST" action="{{ route('verification.send') }}" class="mb-3">
+                <form method="POST" action="{{ route('verification.send') }}" class="mb-3" x-data="{ submitting: false }" @submit="submitting = true">
                     @csrf
-                    <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg shadow-brand-600/20 transition-all duration-200">
-                        Resend Verification Email
+                    <button type="submit" :disabled="submitting"
+                        class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg shadow-brand-600/20 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                        <svg x-show="submitting" class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                        <span x-text="submitting ? 'Sending...' : 'Resend Verification Email'"></span>
                     </button>
                 </form>
 
                 {{-- Sign Out --}}
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('logout') }}" x-data="{ submitting: false }" @submit="submitting = true">
                     @csrf
-                    <button type="submit" class="w-full py-3.5 bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold rounded-xl border border-slate-200 transition-all duration-200">
-                        Sign Out
+                    <button type="submit" :disabled="submitting"
+                        class="w-full py-3.5 bg-slate-50 hover:bg-slate-100 text-slate-700 font-semibold rounded-xl border border-slate-200 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                        <svg x-show="submitting" class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                        <span x-text="submitting ? 'Signing out...' : 'Sign Out'"></span>
                     </button>
                 </form>
             </div>

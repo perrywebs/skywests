@@ -2,12 +2,7 @@
 
 @section('title', 'Forgot Password')
 
-@php
-    $settings = app(\App\Http\Controllers\SettingsController::class)->getAppearanceSettings();
-@endphp
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+@section('content')
 <div class="min-h-screen flex" style="font-family: 'Inter', sans-serif;">
     {{-- Left Branding Panel --}}
     <div class="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-brand-600 via-brand-700 to-brand-900 overflow-hidden">
@@ -23,7 +18,7 @@
         <div class="relative z-10 flex flex-col items-center justify-center w-full p-12">
             <div class="mb-8">
                 @if($settings->logo)
-                    <img src="{{ asset('storage/' . $settings->logo) }}" alt="{{ $settings->site_name }}" class="h-16 filter brightness-0 invert opacity-90">
+                    <img src="{{ asset('storage/app/public/' . $settings->logo) }}" alt="{{ $settings->site_name }}" class="h-16 filter brightness-0 invert opacity-90">
                 @else
                     <span class="text-3xl font-bold text-white tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">{{ $settings->site_name }}</span>
                 @endif
@@ -82,7 +77,7 @@
             {{-- Mobile Logo --}}
             <div class="lg:hidden flex items-center justify-center mb-8">
                 @if($settings->logo)
-                    <img src="{{ asset('storage/' . $settings->logo) }}" alt="{{ $settings->site_name }}" class="h-12">
+                    <img src="{{ asset('storage/app/public/' . $settings->logo) }}" alt="{{ $settings->site_name }}" class="h-12">
                 @else
                     <span class="text-2xl font-bold text-brand-600" style="font-family: 'Plus Jakarta Sans', sans-serif;">{{ $settings->site_name }}</span>
                 @endif
@@ -121,7 +116,7 @@
                     <p class="text-sm text-slate-500">Enter your email address and we'll send you a link to reset your password.</p>
                 </div>
 
-                <form method="POST" action="{{ route('password.email') }}" class="space-y-6">
+                <form method="POST" action="{{ route('password.email') }}" class="space-y-6" x-data="{ submitting: false }" @submit="submitting = true">
                     @csrf
 
                     {{-- Email Input --}}
@@ -147,10 +142,12 @@
                     {{-- Submit Button --}}
                     <button
                         type="submit"
-                        class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg shadow-brand-600/20 hover:shadow-brand-600/35 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                        :disabled="submitting"
+                        class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl shadow-lg shadow-brand-600/20 hover:shadow-brand-600/35 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        <i data-lucide="send" class="w-5 h-5"></i>
-                        Send Reset Link
+                        <svg x-show="submitting" class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                        <i x-show="!submitting" data-lucide="send" class="w-5 h-5"></i>
+                        <span x-text="submitting ? 'Sending...' : 'Send Reset Link'"></span>
                     </button>
 
                     {{-- Back to Login --}}
@@ -171,9 +168,4 @@
         </div>
     </div>
 </div>
-
-@push('scripts')
-    <script>
-        lucide.createIcons();
-    </script>
-@endpush
+@endsection

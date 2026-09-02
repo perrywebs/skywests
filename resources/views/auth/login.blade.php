@@ -15,43 +15,14 @@
             <div class="absolute inset-0 auth-mesh"></div>
         </div>
 
-        {{-- Content --}}
+            {{-- Content --}}
         <div class="relative flex flex-col justify-center items-center w-full h-full text-white p-12 z-10">
             <a href="/" class="mb-10">
                 <img src="{{ asset('storage/app/public/' . $settings->logo) }}" alt="Logo" class="h-14 filter brightness-0 invert opacity-90">
             </a>
 
-            <h1 class="text-4xl font-extrabold mb-5 text-center font-display leading-tight">Swift Money<br>Transfer</h1>
-            <p class="text-lg mb-12 max-w-sm text-center text-white/60 leading-relaxed">
-                Swift and Secure Money Transfer to any bank account will become a breeze with {{ $settings->site_name }}.
-            </p>
-
-            <div class="grid grid-cols-2 gap-3.5 w-full max-w-sm">
-                <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-3.5">
-                    <div class="flex-shrink-0 w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
-                        <i data-lucide="shield" class="h-4 w-4"></i>
-                    </div>
-                    <span class="text-sm font-medium">Secure</span>
-                </div>
-                <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-3.5">
-                    <div class="flex-shrink-0 w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
-                        <i data-lucide="zap" class="h-4 w-4"></i>
-                    </div>
-                    <span class="text-sm font-medium">Fast</span>
-                </div>
-                <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-3.5">
-                    <div class="flex-shrink-0 w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
-                        <i data-lucide="globe" class="h-4 w-4"></i>
-                    </div>
-                    <span class="text-sm font-medium">Global</span>
-                </div>
-                <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-3.5">
-                    <div class="flex-shrink-0 w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
-                        <i data-lucide="smartphone" class="h-4 w-4"></i>
-                    </div>
-                    <span class="text-sm font-medium">Mobile</span>
-                </div>
-            </div>
+            <h1 class="text-2xl font-bold text-center mb-3">Welcome back</h1>
+            <p class="text-white/70 text-center text-sm max-w-xs">Sign in to your account using your email and password.</p>
         </div>
     </div>
 
@@ -162,8 +133,8 @@
 
             <p class="mt-6 text-center text-xs text-slate-400">
                 By signing in, you agree to our
-                <a href="terms-of-service" class="text-brand-600 hover:text-brand-700 font-medium">Terms</a> and
-                <a href="privacy-policy" class="text-brand-600 hover:text-brand-700 font-medium">Privacy Policy</a>
+                <a href="{{ route('terms') }}" class="text-brand-600 hover:text-brand-700 font-medium">Terms</a> and
+                <a href="{{ route('privacy') }}" class="text-brand-600 hover:text-brand-700 font-medium">Privacy Policy</a>
             </p>
         </div>
     </div>

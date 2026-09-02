@@ -20,12 +20,11 @@
             {{-- Left: Content --}}
             <div class="max-w-xl">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs font-semibold tracking-wider uppercase mb-8 opacity-0 animate-fade-in-down" style="animation-fill-mode: forwards;">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></span>
                     Trusted by Millions Worldwide
                 </div>
 
                 <h1 class="font-display text-[2.75rem] sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.08] tracking-tight text-slate-900 mb-6 opacity-0 animate-fade-in-up" style="animation-fill-mode: forwards;">
-                    Banking Built
+                    Built
                     <span class="gradient-text"> For Real People</span>
                 </h1>
 
@@ -65,7 +64,7 @@
             {{-- Right: Human Photo --}}
             <div class="relative hidden lg:block">
                 <div class="relative z-10">
-                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop&auto=format" alt="Banking Professional" class="rounded-3xl shadow-2xl shadow-slate-900/10 w-full max-w-lg ml-auto object-cover aspect-[4/3]" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1513682121497-80211f36a7d3?q=80&w=688&auto=format" alt="Banking Professional" class="rounded-3xl shadow-2xl shadow-slate-900/10 w-full max-w-lg ml-auto object-cover aspect-[4/3]" loading="lazy">
                     {{-- Floating card --}}
                     <div class="absolute -bottom-6 -left-6 glass-card rounded-2xl p-4 shadow-xl animate-float z-20">
                         <div class="flex items-center gap-3">
